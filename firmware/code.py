@@ -208,6 +208,8 @@ def main():
 
             req = {"req": "note.add"}
             req["file"] = "sensors.qo"
+            # Since this contains health data, encrypt the body for transport to Notehub
+            req["key"] = "encryption_key"
             req["body"] = {
                 "temp": bmp280.temperature,
                 "humidity": sht31d.relative_humidity,
