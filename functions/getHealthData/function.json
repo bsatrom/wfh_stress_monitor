@@ -1,0 +1,27 @@
+{
+  "bindings": [
+    {
+      "authLevel": "function",
+      "type": "httpTrigger",
+      "direction": "in",
+      "name": "req",
+      "methods": [
+        "get",
+        "post"
+      ]
+    },
+    {
+      "type": "http",
+      "direction": "out",
+      "name": "res"
+    },
+    {
+      "type": "cosmosDB",
+      "name": "healthDataStorage",
+      "databaseName": "health-data",
+      "collectionName": "heartrate-data",
+      "direction": "in",
+      "connectionStringSetting": "healthdata_DOCUMENTDB"
+    }
+  ]
+}
