@@ -58,6 +58,10 @@ div.sticky {
     top:0px;
 }
 
+.envVarsModal {
+  margin-top: 20%;
+}
+
 .App-link {
   color: #61dafb;
 }

@@ -26,12 +26,13 @@ class App extends Component {
   constructor(props) {
     super(props);
 
+    this.dismiss = this.dismiss.bind(this);
     this.state = {
       device: null,
       model: null,
       readings: [],
       alerts:[],
-      env_vars:[],
+      env_vars: {},
       currentBattery: null,
       currentHeartRate: null,
       currentTemp: null,
@@ -42,6 +43,10 @@ class App extends Component {
       alertMessage: null,
       error: null,
     };
+  }
+
+  dismiss() {
+    this.setState({ alertMessage: null });
   }
 
   async getHealthData() {
@@ -76,7 +81,6 @@ class App extends Component {
 
     try {
       const alertsResult = await axios.get(`${ALERTS_API}&since=${this.state.lastAlertCheck}`);
-      console.log(`${ALERTS_API}&since=${this.state.lastAlertCheck}`, alertsResult);
       const alertsData = alertsResult.data;
 
       this.setState({
@@ -152,10 +156,10 @@ class App extends Component {
       <div>
         <header>
           {this.state.alertMessage &&
-            <Alert className="sticky" theme="danger">
+            <Alert dismissible={this.dismiss} className="sticky" theme="danger">
               {this.state.alertMessage}
             </Alert>}
-          <TopNav />
+          <TopNav envVars={this.state.env_vars} />
         </header>
         <Container>
           <Row>
