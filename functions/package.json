@@ -7,6 +7,9 @@
     "test": "echo \"No tests yet...\""
   },
   "dependencies": {
+    "@azure/identity": "^1.4.0",
+    "@azure/keyvault-certificates": "^4.2.0",
+    "@azure/keyvault-keys": "^4.2.2",
     "node-fetch": "^2.6.1"
   },
   "devDependencies": {}
