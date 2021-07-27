@@ -5,22 +5,26 @@ module.exports = async function (context, req) {
         first.event_created - second.event_created;
     }).reverse();
 
-    returnData = {
-        "device": data[0].heart_rate_data.manufacturer,
-        "model": data[0].heart_rate_data.model_number,
-        readings: data.map(item => {
-            return {
-                "created": item.event_created,
-                "bpm": item.heart_rate_data.bpm,
-                "batt": item.heart_rate_data.battery_level,
-                "pct_to_max": item.heart_rate_data.pct_notify,
-                "humidity": item.humidity,
-                "temp": item.temp,
-                "pressure": item.pressure,
-                "sound_level": item.sound_level
-            };
-        })
-    };
+    let returnData = {};
+
+    if (data) {
+        returnData = {
+            "device": data[0].heart_rate.manufacturer,
+            "model": data[0].heart_rate.model_number,
+            readings: data.map(item => {
+                return {
+                    "created": item.event_created,
+                    "bpm": item.heart_rate.bpm,
+                    "batt": item.heart_rate.battery_level,
+                    "pct_to_max": item.heart_rate.pct_notify,
+                    "humidity": item.humidity,
+                    "temp": item.temp,
+                    "pressure": item.pressure,
+                    "sound_level": item.sound_level
+                };
+            })
+        };
+    }
 
     context.res = {
         body: returnData

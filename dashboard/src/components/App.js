@@ -64,7 +64,7 @@ class App extends Component {
         currentBattery: latest.batt,
         currentHeartRate: latest.bpm,
         currentSoundLevel: latest.sound_level,
-        currentTemp: latest.temp,
+        currentTemp: Math.round(latest.temp * (9/5) + 32),
         lastReading: latest.created,
         isLoading: false
       });

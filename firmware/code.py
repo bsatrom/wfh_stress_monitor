@@ -25,7 +25,7 @@ blue_led = DigitalInOut(board.BLUE_LED)
 blue_led.direction = Direction.OUTPUT
 blue_led.value = False
 
-productUID = "com.blues.bsatrom:wfh_stress_detector"
+productUID = "YOUR_PRODUCT_UID"
 
 i2c = board.I2C()
 

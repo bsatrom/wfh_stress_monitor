@@ -53,7 +53,10 @@ module.exports = async function (context, req) {
 
             const decryptedPayload = await aes_decrypt(encAES, encText);
 
-            context.bindings.healthDataStorage = JSON.parse(decryptedPayload);
+            const jsonPayload = JSON.parse(decryptedPayload);
+            jsonPayload["event_created"] = msgBody.event_created;
+
+            context.bindings.healthDataStorage = jsonPayload;
             rspBody = 'Health data decrypted and saved';
         }
     }

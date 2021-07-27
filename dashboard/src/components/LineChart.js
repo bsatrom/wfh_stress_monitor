@@ -16,7 +16,7 @@ const LineChart = (props) => {
   const sortedTemps = readings.map(el => {
     return {
       "x": new Date(el.created*1000),
-      "y": el.temp
+      "y": el.temp * (9/5) + 32
     };
   });
   const sortedHRs = readings.map(el => {
